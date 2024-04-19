@@ -1,0 +1,22 @@
+/* post_list.css */
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+}
+
+.post {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 20px;
+    background-color: #fff;
+}
+
+.post h2 {
+    color: #333;
+}
+
+.post p {
+    color: #666;
+}
