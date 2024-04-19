@@ -20,3 +20,8 @@ body {
 .post p {
     color: #666;
 }
+
+.content-wrapper {
+    margin: 0 auto; /* Center horizontally */
+    max-width: 800px; /* Adjust the maximum width as needed */
+}

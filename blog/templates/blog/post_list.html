@@ -6,38 +6,40 @@
     <link rel="stylesheet" href="{% static 'blog/post_list.css' %}">
 </head>
 <body>
-    <h1>Blog Posts</h1>
-    <nav>
-        <ul>
-            <li><a href="{% url 'post_list' %}">Home</a></li>
-            <li><a href="{% url 'about' %}">About</a></li>
-            <li><a href="{% url 'logout' %}">Logout</a></li>
-        </ul>
-    </nav>
-    {% for post in posts %}
-        <div class="post">
-            <h2>{{ post.title }}</h2>
-            <p>{{ post.content|truncatechars:200 }}</p>
-            <a href="{% url 'post_detail' pk=post.pk %}">Read more</a>
-        </div>
-    {% endfor %}
+    <div class="content-wrapper">
+        <h1>Blog Posts</h1>
+        <nav>
+            <ul>
+                <li><a href="{% url 'post_list' %}">Home</a></li>
+                <li><a href="{% url 'about' %}">About</a></li>
+                <li><a href="{% url 'logout' %}">Logout</a></li>
+            </ul>
+        </nav>
+        {% for post in posts %}
+            <div class="post">
+                <h2>{{ post.title }}</h2>
+                <p>{{ post.content|truncatechars:200 }}</p>
+                <a href="{% url 'post_detail' pk=post.pk %}">Read more</a>
+            </div>
+        {% endfor %}
 
-    <div class="pagination">
-        <span class="step-links">
-            {% if posts.has_previous %}
-                <a href="?page=1">&laquo; first</a>
-                <a href="?page={{ posts.previous_page_number }}">previous</a>
-            {% endif %}
-    
-            <span class="current">
-                Page {{ posts.number }} of {{ posts.paginator.num_pages }}.
+        <div class="pagination">
+            <span class="step-links">
+                {% if posts.has_previous %}
+                    <a href="?page=1">&laquo; first</a>
+                    <a href="?page={{ posts.previous_page_number }}">previous</a>
+                {% endif %}
+        
+                <span class="current">
+                    Page {{ posts.number }} of {{ posts.paginator.num_pages }}.
+                </span>
+        
+                {% if posts.has_next %}
+                    <a href="?page={{ posts.next_page_number }}">next</a>
+                    <a href="?page={{ posts.paginator.num_pages }}">last &raquo;</a>
+                {% endif %}
             </span>
-    
-            {% if posts.has_next %}
-                <a href="?page={{ posts.next_page_number }}">next</a>
-                <a href="?page={{ posts.paginator.num_pages }}">last &raquo;</a>
-            {% endif %}
-        </span>
+        </div>
     </div>
 </body>
 </html>
