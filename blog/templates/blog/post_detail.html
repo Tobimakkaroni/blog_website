@@ -10,6 +10,10 @@
         <h1>{{ post.title }}</h1>
         <p>{{ post.content|safe }}</p>
         <p>Published on: {{ post.created_at }}</p>
+
+        <!-- comment section -->
+        {% load comments %}
+        {% render_comment_form for post %}
         <a href="{% url 'post_list' %}">Back to Home</a>
     </div>
 </body>
