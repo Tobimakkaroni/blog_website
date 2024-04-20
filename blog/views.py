@@ -11,6 +11,9 @@ from django.contrib.auth.views import LoginView
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST
 from django_ratelimit.decorators import ratelimit
+from django_comments_xtd.models import XtdComment
+from django_comments_xtd.forms import XtdCommentForm
+from django.http import Http404
 
 
 def post_list(request):
@@ -83,3 +86,20 @@ class CustomLoginView(LoginView):
 @csrf_exempt
 def my_view(request):
     return render(request, 'my_template.html')
+
+def post_comment(request):
+    if request.method == 'POST':
+        post_id = request.POST.get('post_id')
+        if post_id is None:
+            raise Http404("Post ID not found in request.")
+        
+        post = get_object_or_404(Post, pk=post_id)
+        
+        form = XtdCommentForm(data=request.POST, target_object=post)
+        if form.is_valid():
+            comment = form.get_comment_object()
+            comment.save()
+    else:
+        raise Http404("Invalid request method.")
+
+    return render(request, 'your_template.html', {'form': form})
