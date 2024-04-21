@@ -37,6 +37,23 @@
         <div id="result"></div>
     </div>
     <script>
+        /*
+        1 C4 = 20 explosives, 5 cloth, 2 tech trash
+        1 explosive = 50 gunpowder, 3 low grade fuel, 10 sulfur, 10 metal fragments
+        10 gunpowder = 30 charcoal, 20 sulfur
+        4 low grade fuel = 3 animal fat, 1 cloth
+
+        1 smoke granade = 5 scrap
+        1 smoke granade recycles into 18 gunpowder, 25 metal fragments
+        1 gunpowder recycles into 1 sulfur, 2 charcoal
+
+        1 C4 = 123 Smoke granades
+        1 smoke granade = 18 gunpowder
+        1 sulfur = 1 gunpowder
+        1 charcoal = 0,5 gunpowder
+        18 gunpowder * 123 smoke granades = 2214 gunpowder
+        */
+
         function calculate() {
             // Get the selected item and quantity
             const selectedItem = document.getElementById("item").value;
