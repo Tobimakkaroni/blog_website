@@ -13,6 +13,7 @@
                 <li><a href="{% url 'post_list' %}">Home</a></li>
                 <li><a href="{% url 'about' %}">About</a></li>
                 <li><a href="{% url 'logout' %}">Logout</a></li>
+                <li><a href="{% url 'rust_calculator' %}">Rust Calculator</a></li>
             </ul>
         </nav>
         {% for post in posts %}
@@ -42,4 +43,7 @@
         </div>
     </div>
 </body>
+<footer>
+    <p>© YYYY Your Blog Name | <a href="{% url 'legal_notice' %}">Legal Notice</a></p>
+</footer>
 </html>

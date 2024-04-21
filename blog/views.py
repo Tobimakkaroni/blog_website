@@ -103,3 +103,9 @@ def post_comment(request):
         raise Http404("Invalid request method.")
 
     return render(request, 'your_template.html', {'form': form})
+
+def legal_notice_view(request):
+    return render(request, 'blog/legal_notice.html')
+
+def rust_calculator_view(request):
+    return render(request, 'rust/rust_calculator.html')
