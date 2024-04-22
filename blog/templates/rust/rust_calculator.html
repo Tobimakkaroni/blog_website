@@ -7,104 +7,75 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
+            background-color: #151d1c;
+            color: #827d77;
         }
         .container {
             max-width: 600px;
             margin: 0 auto;
             padding: 20px;
         }
+        .content-wrapper {
+            margin: 0 auto;
+            max-width: 800px;
+        }
+        #rustCalculatorForm {
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+            margin-bottom: 20px;
+            background-color: #1c2726;
+        }
+        .rust-logo.resize {
+            width: 100px;
+            height: auto;
+        }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Rust Calculator</h1>
-        <form id="rustCalculatorForm">
-            <div class="form-group">
-                <label for="item">Select an item:</label>
-                <select id="item">
-                    <option value="C4">C4</option>
-                    <option value="SmokeGrenade">Smoke Grenade</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="quantity">Enter quantity:</label>
-                <input type="number" id="quantity" min="1" value="1">
-            </div>
-            <button type="button" onclick="calculate()">Calculate</button>
-        </form>
-        <div id="result"></div>
+    <div class="content-wrapper">
+    <div class="rust-logo">
+        <img src="../static/img/rust_logo.png" alt="Rust Logo">
     </div>
-    <script>
-        /*
-        1 C4 = 20 explosives, 5 cloth, 2 tech trash
-        1 explosive = 50 gunpowder, 3 low grade fuel, 10 sulfur, 10 metal fragments
-        10 gunpowder = 30 charcoal, 20 sulfur
-        4 low grade fuel = 3 animal fat, 1 cloth
-
-        1 smoke granade = 5 scrap
-        1 smoke granade recycles into 18 gunpowder, 25 metal fragments
-        1 gunpowder recycles into 1 sulfur, 2 charcoal
-
-        1 C4 = 123 Smoke granades
-        1 smoke granade = 18 gunpowder
-        1 sulfur = 1 gunpowder
-        1 charcoal = 0,5 gunpowder
-        18 gunpowder * 123 smoke granades = 2214 gunpowder
-        */
-
-        function calculate() {
-            const selectedItem = document.getElementById("item").value;
-            const quantity = parseInt(document.getElementById("quantity").value);
-
-            let result;
-            if (selectedItem === "C4") {
-                result = calculateC4(quantity);
-                document.getElementById("result").innerHTML = `Smoke grenades needed: ${result}`;
-            } else if (selectedItem === "SmokeGrenade") {
-                document.getElementById("result").innerHTML = "Calculation for Smoke Grenade is not implemented yet.";
+        <div class="container">
+            <h1>Rust Calculator</h1>
+            <form id="rustCalculatorForm">
+                <div class="form-group">
+                    <label for="item">Select an item:</label>
+                    <select id="item">
+                        <option value="C4">C4</option>
+                        <option value="Rocket">Rocket</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="quantity">Enter quantity:</label>
+                    <input type="number" id="quantity" min="1" value="1">
+                </div>
+                <button type="button" onclick="calculate()">Calculate</button>
+            </form>
+            <div id="result"></div>
+        </div>
+        <script>
+            function calculate() {
+                var item = document.getElementById("item").value;
+                var quantity = parseInt(document.getElementById("quantity").value);
+                var craftingRecipes = {
+                    C4: { Sulfur: 2200, Charcoal: 3000 },
+                    Rocket: { Sulfur: 1400, Charcoal: 1950 }
+                };
+                var recyclingRecipes = {
+                    SmokeGrenade: { Gunpowder: 18, MetalFragments: 25 }
+                };
+                var totalMaterials = craftingRecipes[item];
+                var gunpowderNeeded = totalMaterials.Sulfur / 2;
+                var smokeGrenadeQuantity = Math.ceil(gunpowderNeeded / recyclingRecipes.SmokeGrenade.Gunpowder);
+                var scrapCost = 5;
+                var smokeGrenadeCost = smokeGrenadeQuantity * scrapCost;
+                var result = "To craft " + quantity + " " + item + "(s), you need:<br>";
+                result += "You need to buy " + smokeGrenadeQuantity + " smoke grenade(s) for " + smokeGrenadeCost + " scrap to obtain enough materials.";
+                document.getElementById("result").innerHTML = result;
             }
-        }
-
-        function calculateC4(amountOfC4) {
-            const c4Explosives = 20;
-            const c4Cloth = 5;
-            const c4TechTrash = 2;
-            const explosiveGunpowder = 50;
-            const explosiveLowGradeFuel = 3;
-            const explosiveSulfur = 10;
-            const explosiveMetalFragments = 10;
-            const gunpowderCharcoal = 2;
-            const gunpowderSulfur = 1;
-            const lowGradeFuelAnimalFat = 3;
-            const lowGradeFuelCloth = 1;
-            const smokeGrenadeScrap = 5;
-            const smokeGrenadeGunpowder = 18;
-            const smokeGrenadeMetalFragments = 25;
-            const gunpowderToSulfurRatio = 1;
-            const gunpowderToCharcoalRatio = 2;
-        
-            const totalExplosives = c4Explosives * amountOfC4;
-            const totalCloth = c4Cloth * amountOfC4;
-            const totalTechTrash = c4TechTrash * amountOfC4;
-        
-            const totalGunpowder = explosiveGunpowder * totalExplosives;
-            const totalLowGradeFuel = explosiveLowGradeFuel * totalExplosives;
-            const totalSulfur = explosiveSulfur * totalExplosives;
-            const totalMetalFragments = explosiveMetalFragments * totalExplosives;
-        
-            const totalSulfurForGunpowder = totalGunpowder / gunpowderSulfur;
-
-            const totalAnimalFat = (totalLowGradeFuel / lowGradeFuelAnimalFat) * amountOfC4;
-            const totalClothForLowGradeFuel = (totalLowGradeFuel / lowGradeFuelCloth) * amountOfC4;
-
-            const totalGunpowderForSmokeGrenades = totalGunpowder + totalSulfurForGunpowder;
-
-            const totalSmokeGrenades = totalGunpowderForSmokeGrenades / smokeGrenadeGunpowder;
-        
-            return Math.ceil(totalSmokeGrenades);
-        }
-    </script>
+        </script>
+    </div>
 </body>
 </html>
