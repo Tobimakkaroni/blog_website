@@ -1,12 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <!-- Maybe später übersetzten oder auf englisch lassen -->
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Legal Notice</title>
-</head>
-<body>
+{% extends 'base.html' %}
+
+{% block content %}
     <header>
         <h1>Legal Notice</h1>
     </header>
@@ -39,5 +33,4 @@
         <p>Created by Tobias Stark - © 2024</p>
     </footer>
     <a href="{% url 'post_list' %}">Back to Home</a>
-</body>
-</html>
+{% endblock %}

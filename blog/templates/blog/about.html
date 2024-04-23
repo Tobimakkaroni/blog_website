@@ -1,11 +1,7 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>About</title>
-</head>
-<body>
+{% extends 'base.html' %}
+
+{% block content %}
     <h1>About Me</h1>
     <p>This is a blog website created with Django.</p>
     <a href="{% url 'post_list' %}">Back to Home</a>
-</body>
-</html>
+{% endblock %}

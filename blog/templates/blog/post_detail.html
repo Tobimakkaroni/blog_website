@@ -1,20 +1,12 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>{{ post.title }}</title>
-    {% load static %}
-    <link rel="stylesheet" href="{% static 'blog/css/post_list.css' %}">
-</head>
-<body>
-    <div class="content-wrapper">
-        <h1>{{ post.title }}</h1>
-        <p>{{ post.content|safe }}</p>
-        <p>Published on: {{ post.created_at }}</p>
+{% extends 'base.html' %}
 
-        <!-- comment section -->
-        {% load comments %}
-        {% render_comment_form for post %}
-        <a href="{% url 'post_list' %}">Back to Home</a>
-    </div>
-</body>
-</html>
+{% block content %}
+    <h1>{{ post.title }}</h1>
+    <p>{{ post.content|safe }}</p>
+    <p>Published on: {{ post.created_at }}</p>
+
+    <!-- comment section -->
+    {% load comments %}
+    {% render_comment_form for post %}
+    <a href="{% url 'post_list' %}">Back to Home</a>
+{% endblock %}
