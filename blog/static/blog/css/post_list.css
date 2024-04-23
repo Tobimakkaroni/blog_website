@@ -1,8 +1,3 @@
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
-}
-
 .post {
     border: 1px solid #ccc;
     border-radius: 5px;
@@ -20,6 +15,59 @@ body {
 }
 
 .content-wrapper {
-    margin: 0 auto;
+    margin: 60px auto 0; /* platz nach oben für content sonst ist die navbar auf dem content */
     max-width: 800px;
+}
+
+nav {
+    background-color: #333;
+    padding: 10px 0;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    z-index: 1000; /* damit die navbar immer über dem content ist */
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+li {
+    display: inline; /* horizontale einstellung */
+    margin-right: 20px; /* platz zwischen wörtern */
+}
+
+li:last-child {
+    margin-right: 0;
+}
+
+a {
+    color: white;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: #333;
+    padding: 5px 0;
+    margin: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    padding-top: 60px; /* ohne das verschwindet der content zu weit unter der navbar */
+    padding-bottom: 60px;
+    min-height: 100vh;
+    position: relative;
+    margin: 0;
 }
