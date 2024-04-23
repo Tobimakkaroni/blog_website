@@ -26,6 +26,7 @@ nav {
     position: fixed;
     top: 0;
     z-index: 1000; /* damit die navbar immer über dem content ist */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5); /* Add shadow */
 }
 
 ul {
@@ -38,7 +39,7 @@ ul {
 li {
     display: inline; /* horizontale einstellung */
     margin-right: 20px; /* platz zwischen wörtern */
-    color: rgb(216, 73, 54);
+    color: rgb(255, 122, 104);
 }
 
 li:last-child {
@@ -76,4 +77,35 @@ body {
     min-height: 100vh;
     position: relative;
     margin: 0;
+}
+
+h1 {
+    font-family: Arial, sans-serif;
+    font-size: 36px;
+    color: #333; /* Dark text color */
+    text-align: center;
+    text-transform: uppercase; /* Uppercase text */
+    letter-spacing: 2px; /* Increased letter spacing for emphasis */
+    margin-top: 50px; /* Add some space at the top */
+    padding: 20px 0; /* Add padding for better visual separation */
+    background: linear-gradient(to right, #f8f8f8, #ffffff); /* Gradient background */
+    border-bottom: 2px solid #ccc; /* Bottom border */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Shadow effect */
+    transition: color 0.3s ease; /* Smooth color transition */
+}
+
+/* CSS for hover effect */
+h1:hover {
+    color: #ff6600; /* Change text color to orange on hover */
+    animation: burning 1s infinite alternate; /* Burning animation */
+}
+
+/* Keyframe animation for burning effect */
+@keyframes burning {
+    0% {
+        text-shadow: 0 0 20px #ff6600, 0 0 40px #ff6600, 0 0 80px #ff6600, 0 0 160px #ff6600; /* Intensified burning flame text shadow */
+    }
+    100% {
+        text-shadow: 0 0 40px #ff6600, 0 0 80px #ff6600, 0 0 160px #ff6600, 0 0 320px #ff6600; /* Further intensified burning flame text shadow */
+    }
 }
