@@ -44,8 +44,13 @@ li:last-child {
     margin-right: 0;
 }
 
-a {
-    color: white;
+nav a {
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+}
+
+footer a {
+    color: rgb(255, 255, 255);
     text-decoration: none;
 }
 
