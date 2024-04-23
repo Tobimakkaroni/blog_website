@@ -38,6 +38,7 @@ ul {
 li {
     display: inline; /* horizontale einstellung */
     margin-right: 20px; /* platz zwischen wörtern */
+    color: rgb(216, 73, 54);
 }
 
 li:last-child {

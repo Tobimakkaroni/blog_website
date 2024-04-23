@@ -8,6 +8,7 @@
 <body>
     <nav>
         <ul>
+            <li>{{ user.username }}</li>
             <li><a href="{% url 'post_list' %}">Home</a></li>
             <li><a href="{% url 'about' %}">About</a></li>
             <li><a href="{% url 'logout' %}">Logout</a></li>
