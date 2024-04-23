@@ -31,6 +31,7 @@ INSTALLED_APPS = [
     'django_comments_xtd',
     'django.contrib.sites',
     'django_comments',
+    'rust',
 ]
 
 SITE_ID = 1

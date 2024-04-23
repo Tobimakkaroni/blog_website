@@ -15,7 +15,6 @@ urlpatterns = [
     path('profile/', views.profile, name='profile'),
     path('comments/post/', views.post_comment, name='post_comment'),
     path('legal-notice/', views.legal_notice_view, name='legal_notice'),
-    path('rust-calculator/', views.rust_calculator_view, name='rust_calculator'),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 if settings.DEBUG:

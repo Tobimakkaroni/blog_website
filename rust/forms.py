@@ -1,0 +1,1 @@
+from blog.forms import SignUpForm
