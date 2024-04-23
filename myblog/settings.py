@@ -16,9 +16,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
-# Application definition
-
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -26,11 +23,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'blog',
     'ckeditor',
     'django_comments_xtd',
     'django.contrib.sites',
     'django_comments',
+    'blog',
     'rust',
 ]
 
@@ -113,8 +110,8 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
-STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_URL = '/static/' # beispiel zur verwendung: <link rel="stylesheet" type="text/css" href="{% static 'styles.css' %}">
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles') # hier werden alle static files aus allen apps gesammelt bei 'collectstatic'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field

@@ -1,4 +1,5 @@
 <script>
+    Rechnung nicht ganz richtig, da umrechnung von gp falsch ist
     /*
     1 C4 = 20 explosives, 5 cloth, 2 tech trash
     1 explosive = 50 gunpowder, 3 low grade fuel, 10 sulfur, 10 metal fragments
@@ -17,7 +18,6 @@
     */
 
     function calculate() {
-        // Get the selected item and quantity
         const selectedItem = document.getElementById("item").value;
         const quantity = parseInt(document.getElementById("quantity").value);
 
@@ -26,14 +26,11 @@
             result = calculateC4(quantity);
             document.getElementById("result").innerHTML = `Smoke grenades needed: ${result}`;
         } else if (selectedItem === "SmokeGrenade") {
-            // Handle Smoke Grenade calculation
-            // This part is missing, you can add it if needed
             document.getElementById("result").innerHTML = "Calculation for Smoke Grenade is not implemented yet.";
         }
     }
 
     function calculateC4(amountOfC4) {
-        // Constants
         const c4Explosives = 20;
         const c4Cloth = 5;
         const c4TechTrash = 2;
@@ -50,32 +47,26 @@
         const smokeGrenadeMetalFragments = 25;
         const gunpowderToSulfurRatio = 1;
         const gunpowderToCharcoalRatio = 2;
-    
-        // Calculate the total resources needed for 'amountOfC4' C4
+
         const totalExplosives = c4Explosives * amountOfC4;
         const totalCloth = c4Cloth * amountOfC4;
         const totalTechTrash = c4TechTrash * amountOfC4;
     
-        // Calculate the resources needed to produce explosives
         const totalGunpowder = explosiveGunpowder * totalExplosives;
         const totalLowGradeFuel = explosiveLowGradeFuel * totalExplosives;
         const totalSulfur = explosiveSulfur * totalExplosives;
         const totalMetalFragments = explosiveMetalFragments * totalExplosives;
     
-        // Calculate the resources needed to produce gunpowder
         const totalSulfurForGunpowder = totalGunpowder / gunpowderSulfur;
     
-        // Calculate the resources needed to produce low grade fuel
         const totalAnimalFat = (totalLowGradeFuel / lowGradeFuelAnimalFat) * amountOfC4;
         const totalClothForLowGradeFuel = (totalLowGradeFuel / lowGradeFuelCloth) * amountOfC4;
     
-        // Calculate the total gunpowder needed for smoke grenades
         const totalGunpowderForSmokeGrenades = totalGunpowder + totalSulfurForGunpowder;
     
-        // Calculate the number of smoke grenades needed
         const totalSmokeGrenades = totalGunpowderForSmokeGrenades / smokeGrenadeGunpowder;
     
-        return Math.ceil(totalSmokeGrenades); // Round up to the nearest whole number
+        return Math.ceil(totalSmokeGrenades);
     }
     
 </script>

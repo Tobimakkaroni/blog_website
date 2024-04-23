@@ -64,7 +64,7 @@ def custom_login(request):
             user = authenticate(username=username, password=password)
             if user is not None:
                 login(request, user)
-                # succsess
+                # success
                 return redirect('post_list')
             else:
                 return render(request, 'registration/login.html', {'form': form, 'error_message': 'Invalid username or password.'})
