@@ -1,0 +1,35 @@
+{% load i18n %}
+{% load comments %}
+{% load comments_xtd %}
+
+<div id="comments">
+  {% for comment in comment_list %}
+  <div id="c{{ comment.id }}" class="comment d-flex py-1">
+    <img src="{{ comment.user_email|xtd_comment_gravatar_url }}"
+        class="me-3" alt="{{ comment.user_email }}"
+        height="48" width="48" />
+    <div class="d-flex flex-column flex-grow-1">
+      <h6 class="comment-header mb-1 d-flex justify-content-between" style="font-size: 0.8rem">
+        <div class="d-inline flex-grow-1">
+          <span>{{ comment.submit_date }}&nbsp;-&nbsp;{% if comment.url and not comment.is_removed %}<a href="{{ comment.url }}" target="_new" class="text-decoration-none">{% endif %}{{ comment.name }}{% if comment.url %}</a>{% endif %}</span>
+          <span>{% if comment.user and comment.user|has_permission:"django_comments.can_moderate" %}&nbsp;<span class="badge text-bg-secondary">{% trans "moderator" %}</span>{% endif %}&nbsp;&nbsp;<a class="permalink text-decoration-none" title="{% trans 'comment permalink' %}" href="{% get_comment_permalink comment %}">¶</a>
+        </div>
+        <div class="d-inline">
+          {% if not comment.is_removed and perms.comments.can_moderate %}
+          <a class="text-decoration-none" href="{% url 'comments-delete' comment.pk %}"><i class="bi bi-trash" title="{% trans 'remove comment' %}"></i></a>
+          {% endif %}
+        </div>
+      </h6>
+      {% if comment.is_removed %}
+      <p class="text-muted pb-3">
+        <em>{% trans "This comment has been removed." %}</em>
+      </p>
+      {% else %}
+      <div class="content pt-1 pb-3">
+        {% include "includes/django_comments_xtd/comment_content.html" with content=comment.comment %}
+      </div>
+      {% endif %}
+    </div>
+  </div>
+  {% endfor %}
+</div>
