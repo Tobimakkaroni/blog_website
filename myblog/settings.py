@@ -113,6 +113,11 @@ USE_TZ = True
 STATIC_URL = '/static/' # beispiel zur verwendung: <link rel="stylesheet" type="text/css" href="{% static 'styles.css' %}">
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles') # hier werden alle static files aus allen apps gesammelt bei 'collectstatic'
 
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'blog', 'static'),
+]
+
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 

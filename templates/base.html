@@ -1,16 +1,27 @@
+{% load static %}
 <!DOCTYPE html>
 <html>
 <head>
     <title>Tobi's Blog</title>
-    {% load static %}
-    <link rel="stylesheet" href="{% static 'blog/post_list.css' %}">
+    <link rel="stylesheet" href="{% static 'blog/css/post_list.css' %}">
 </head>
 <body>
+    <nav>
+        <ul>
+            <li><a href="{% url 'post_list' %}">Home</a></li>
+            <li><a href="{% url 'about' %}">About</a></li>
+            <li><a href="{% url 'logout' %}">Logout</a></li>
+            <li><a href="{% url 'rust_calculator' %}">Rust Calculator</a></li>
+        </ul>
+    </nav>
     <div class="content-wrapper">
         {% block content %}
         {% endblock %}
     </div>
 </body>
+{% block footer %}
+    <footer>
+        <p>© 2024 Tobi's Blog | <a href="{% url 'legal_notice' %}">Legal Notice</a></p>
+    </footer>
+{% endblock %}
 </html>
-<!-- TODO einheitliches design schaffen -->
-<!-- durch extenden der base.html. hier kommt die navbar, footer usw. rein -->
