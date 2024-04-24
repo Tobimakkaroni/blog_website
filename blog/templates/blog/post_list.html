@@ -5,6 +5,11 @@
 {% endblock %}
 
 {% block content %}
+    {% for feature in features %}
+        <div class="featured">
+            <p></p>
+        </div>
+    {% endfor %}
     <h1>Discover a World of Insights:<br>Dive into it now!</h1>
     {% for post in posts %}
         <div class="post">
