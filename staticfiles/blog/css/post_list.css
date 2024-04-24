@@ -15,52 +15,95 @@
 }
 
 .content-wrapper {
-    margin: 0 auto;
+    margin: 60px auto 0; /* platz nach oben für content sonst ist die navbar auf dem content */
     max-width: 800px;
 }
 
 nav {
-    background-color: #333; /* Dark gray background */
-    padding: 10px 0; /* Add some padding on top and bottom */
+    background-color: #333;
+    padding: 10px 0;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    z-index: 1000; /* damit die navbar immer über dem content ist */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
 }
 
 ul {
-    list-style-type: none; /* Remove default list styles */
-    margin: 0; /* Remove default margin */
-    padding: 0; /* Remove default padding */
-    text-align: center; /* Center-align the list items */
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    text-align: center;
 }
 
 li {
-    display: inline; /* Display list items horizontally */
-    margin-right: 20px; /* Add some spacing between list items */
+    display: inline; /* horizontale einstellung */
+    margin-right: 20px; /* platz zwischen wörtern */
+    color: rgb(255, 122, 104);
 }
 
 li:last-child {
-    margin-right: 0; /* Remove margin from the last list item */
+    margin-right: 0;
 }
 
-a {
-    color: white; /* White text color */
-    text-decoration: none; /* Remove underline from links */
+nav a {
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+}
+
+footer a {
+    color: rgb(255, 255, 255);
+    text-decoration: none;
 }
 
 a:hover {
-    text-decoration: underline; /* Underline links on hover */
+    text-decoration: underline;
 }
 
 .footer {
     position: fixed;
     bottom: 0;
     width: 100%;
-    background-color: #f5f5f5;
-    padding: 20px 0;
+    background-color: #333;
+    padding: 5px 0;
+    margin: 0;
 }
 
 body {
     font-family: Arial, sans-serif;
     background-color: #f0f0f0;
-    padding-bottom: 100px;
-    position: relative;
+    padding-top: 60px; /* ohne das verschwindet der content zu weit unter der navbar */
+    padding-bottom: 60px;
     min-height: 100vh;
+    position: relative;
+    margin: 0;
+}
+
+h1 {
+    font-family: Arial, sans-serif;
+    font-size: 36px;
+    color: #333;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-top: 50px;
+    padding: 20px 0;
+    background: linear-gradient(to right, #f8f8f8, #ffffff);
+    border-bottom: 2px solid #ccc;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: color 0.3s ease;
+}
+
+h1:hover {
+    color: #ff6600;
+    animation: burning 1s infinite alternate;
+}
+
+@keyframes burning {
+    0% {
+        text-shadow: 0 0 20px #ff6600, 0 0 40px #ff6600, 0 0 80px #ff6600, 0 0 160px #ff6600;
+    }
+    100% {
+        text-shadow: 0 0 40px #ff6600, 0 0 80px #ff6600, 0 0 160px #ff6600, 0 0 320px #ff6600;
+    }
 }
