@@ -8,11 +8,22 @@
 <body>
     <nav>
         <ul>
-            <li>{{ user.username }}</li>
+            {% if user.is_authenticated %}
+                <li>{{ user.username }}</li>
+            {% endif %}
             <li><a href="{% url 'post_list' %}">Home</a></li>
             <li><a href="{% url 'about' %}">About</a></li>
-            <li><a href="{% url 'logout' %}">Logout</a></li>
-            <li><a href="{% url 'rust_calculator' %}">Rust Calculator</a></li>
+            {% if user.is_authenticated %}
+                <li><a href="{% url 'profile' %}">My Profile</a></li>
+            {% else %}
+                <li><a href="/login">Log in</a></li>
+            {% endif %}
+            {% if user.is_authenticated %}
+                <li><a href="{% url 'logout' %}">Logout</a></li>
+            {% endif %}
+            {% if user.is_authenticated %}
+                <li><a href="{% url 'rust_calculator' %}">Rust Calculator</a></li>
+            {% endif %}
         </ul>
     </nav>
     <div class="content-wrapper">

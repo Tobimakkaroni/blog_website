@@ -1,0 +1,7 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>{{ user.username }}'s profile</h1>
+    <p>See your statistics <a href="https://www.example.com">here</a></p> <!-- add link to profile statistics template later -->
+    <a href="{% url 'post_list' %}">Back to Home</a>
+{% endblock %}

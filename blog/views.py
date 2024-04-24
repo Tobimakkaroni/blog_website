@@ -74,7 +74,7 @@ def custom_login(request):
 
 @login_required
 def profile(request):
-    return render(request, 'profile.html')
+    return render(request, 'blog/profile.html')
 
 class CustomLoginView(LoginView):
     def get_success_url(self):
