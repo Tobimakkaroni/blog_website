@@ -15,6 +15,8 @@ from django_comments_xtd.models import XtdComment
 from django_comments_xtd.forms import XtdCommentForm
 from django.http import Http404
 
+def feature_list(request):
+    features = 
 
 def post_list(request):
     posts = Post.objects.all()
