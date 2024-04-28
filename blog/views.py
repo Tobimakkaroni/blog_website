@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth import login, authenticate
 from .models import Post
+from .models import Feature
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from .forms import SignUpForm
 from django.contrib.auth import logout
@@ -16,18 +17,9 @@ from django_comments_xtd.forms import XtdCommentForm
 from django.http import Http404
 
 def feature_list(request):
-    features = 
-
-def post_list(request):
-    posts = Post.objects.all()
-    return render(request, 'blog/post_list.html', {'posts': posts})
-
-def about(request):
-    return render(request, 'blog/about.html')
-
-def post_detail(request, pk):
-    post = get_object_or_404(Post, pk=pk)
-    return render(request, 'blog/post_detail.html', {'post': post})
+    features = Feature.objects.all()
+    print(f'here is my feature list {features}')
+    return render(request, 'blog/post_list.html', {'features': features})
 
 def post_list(request):
     posts = Post.objects.all()
@@ -42,6 +34,14 @@ def post_list(request):
         posts = paginator.page(paginator.num_pages)
 
     return render(request, 'blog/post_list.html', {'posts': posts})
+
+def about(request):
+    return render(request, 'blog/about.html')
+
+def post_detail(request, pk):
+    post = get_object_or_404(Post, pk=pk)
+    return render(request, 'blog/post_detail.html', {'post': post})
+
 
 def signup(request):
     if request.method == 'POST':

@@ -5,11 +5,15 @@
 {% endblock %}
 
 {% block content %}
+    <h1>Features</h1>
     {% for feature in features %}
-        <div class="featured">
-            <p></p>
+        <div class="feature">
+            <p>test</p>
+            <h2>{{ feature.title }}</h2>
+            <p>{{ feature.content|truncatechars:200 }}</p>
         </div>
     {% endfor %}
+
     <h1>Discover a World of Insights:<br>Dive into it now!</h1>
     {% for post in posts %}
         <div class="post">
@@ -37,4 +41,3 @@
         </span>
     </div>
 {% endblock %}
-<!-- Ideas: News feed -->
