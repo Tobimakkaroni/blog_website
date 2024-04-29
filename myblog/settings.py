@@ -29,6 +29,7 @@ INSTALLED_APPS = [
     'django_comments',
     'blog',
     'rust',
+    'clicker',
 ]
 
 SITE_ID = 1

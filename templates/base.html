@@ -24,6 +24,9 @@
             {% if user.is_authenticated %}
                 <li><a href="{% url 'rust_calculator' %}">Rust Calculator</a></li>
             {% endif %}
+            {% if user.is_authenticated %}
+                <li><a href="{% url 'clicker' %}">Infinity Clicker</a></li>
+            {% endif %}
         </ul>
     </nav>
     <div class="content-wrapper">

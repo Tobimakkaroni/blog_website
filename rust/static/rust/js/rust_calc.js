@@ -29,6 +29,7 @@ function calculateC4() {
     }
 }
 
+/*
 function calculateRocket() {
     var inputRocket = parseInt(document.getElementById("inputRocket").value);
     var gp = 0;
@@ -59,3 +60,4 @@ function calculateRocket() {
         document.getElementById("resultRocket").innerHTML += "<p>" + result + "</p>";
     }
 }
+*/
