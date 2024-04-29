@@ -5,6 +5,7 @@ function calculate() {
     var sulf = 0;
     var granades = 0;
     var scrap = 0;
+    var roundG = inputc4
 
     while (inputc4 > 0) {
         while (gp < 1000 || metal < 200 || sulf < 200) {
@@ -23,7 +24,7 @@ function calculate() {
         inputc4 -= 1;
         scrap = granades * 5;
 
-        var result = "C4 produced! gp: " + gp + ", metal: " + metal + ", sulf: " + sulf + ", granades: " + granades + ", scrap: " + scrap;
+        var result = "C4 produced! gp: " + gp + ", metal: " + metal + ", sulf: " + sulf + ", granades: " + (granades + roundG) + ", scrap: " + (scrap + (roundG * 5));
         document.getElementById("result").innerHTML += "<p>" + result + "</p>";
     }
 }
