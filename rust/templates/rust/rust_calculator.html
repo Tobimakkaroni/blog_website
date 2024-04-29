@@ -36,22 +36,15 @@
 </head>
 <body>
     <div class="content-wrapper">
-    <div class="rust-logo">
-        <img src="../static/rust/img/rust_logo.png" alt="Rust Logo">
-    </div>
+        <div class="rust-logo">
+            <img src="../static/rust/img/rust_logo.png" alt="Rust Logo">
+        </div>
         <div class="container">
             <h1>Rust Calculator</h1>
             <form id="rustCalculatorForm">
                 <div class="form-group">
-                    <label for="item">Select an item:</label>
-                    <select id="item">
-                        <option value="C4">C4</option>
-                        <option value="Rocket">Rocket</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="quantity">Enter quantity:</label>
-                    <input type="number" id="quantity" min="1" value="1">
+                    <label for="inputc4">Enter quantity of C4:</label>
+                    <input type="number" id="inputc4" min="1" value="3">
                 </div>
                 <button type="button" onclick="calculate()">Calculate</button>
             </form>
@@ -59,23 +52,33 @@
         </div>
         <script>
             function calculate() {
-                var item = document.getElementById("item").value;
-                var quantity = parseInt(document.getElementById("quantity").value);
-                var craftingRecipes = {
-                    C4: { Sulfur: 2200, Charcoal: 3000 },
-                    Rocket: { Sulfur: 1400, Charcoal: 1950 }
-                };
-                var recyclingRecipes = {
-                    SmokeGrenade: { Gunpowder: 18, MetalFragments: 25 }
-                };
-                var totalMaterials = craftingRecipes[item];
-                var gunpowderNeeded = totalMaterials.Sulfur / 2;
-                var smokeGrenadeQuantity = Math.ceil(gunpowderNeeded / recyclingRecipes.SmokeGrenade.Gunpowder);
-                var scrapCost = 5;
-                var smokeGrenadeCost = smokeGrenadeQuantity * scrapCost;
-                var result = "To craft " + quantity + " " + item + "(s), you need:<br>";
-                result += "You need to buy " + smokeGrenadeQuantity + " smoke grenade(s) for " + smokeGrenadeCost + " scrap to obtain enough materials.";
-                document.getElementById("result").innerHTML = result;
+                var inputc4 = parseInt(document.getElementById("inputc4").value);
+                var gp = 0;
+                var metal = 0;
+                var sulf = 0;
+                var granades = 0;
+                var scrap = 0;
+
+                while (inputc4 > 0) {
+                    while (gp < 1000 || metal < 200 || sulf < 200) {
+                        gp += 18;
+                        metal += 25;
+                        granades++;
+
+                        while (sulf < 200 && gp > 1000) {
+                            gp -= 1;
+                            sulf += 1;
+                        }
+                    }
+                    gp -= 1000;
+                    metal -= 200;
+                    sulf -= 200;
+                    inputc4 -= 1;
+                    scrap = granades * 5;
+
+                    var result = "C4 produced! gp: " + gp + ", metal: " + metal + ", sulf: " + sulf + ", granades: " + granades + ", scrap: " + scrap;
+                    document.getElementById("result").innerHTML += "<p>" + result + "</p>";
+                }
             }
         </script>
     </div>
