@@ -1,38 +1,11 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rust Calculator</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #151d1c;
-            color: #827d77;
-        }
-        .container {
-            max-width: 600px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        .content-wrapper {
-            margin: 0 auto;
-            max-width: 800px;
-        }
-        #rustCalculatorForm {
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            padding: 10px;
-            margin-bottom: 20px;
-            background-color: #1c2726;
-        }
-        .rust-logo img {
-            display: block;
-            margin-left: auto;
-            margin-right: auto; 
-            width: 50%;
-        }
-    </style>
+    <link rel="stylesheet" href="{% static '../static/rust/css/rust_calc.css' %}">
 </head>
 <body>
     <div class="content-wrapper">
@@ -50,37 +23,7 @@
             </form>
             <div id="result"></div>
         </div>
-        <script>
-            function calculate() {
-                var inputc4 = parseInt(document.getElementById("inputc4").value);
-                var gp = 0;
-                var metal = 0;
-                var sulf = 0;
-                var granades = 0;
-                var scrap = 0;
-
-                while (inputc4 > 0) {
-                    while (gp < 1000 || metal < 200 || sulf < 200) {
-                        gp += 18;
-                        metal += 25;
-                        granades++;
-
-                        while (sulf < 200 && gp > 1000) {
-                            gp -= 1;
-                            sulf += 1;
-                        }
-                    }
-                    gp -= 1000;
-                    metal -= 200;
-                    sulf -= 200;
-                    inputc4 -= 1;
-                    scrap = granades * 5;
-
-                    var result = "C4 produced! gp: " + gp + ", metal: " + metal + ", sulf: " + sulf + ", granades: " + granades + ", scrap: " + scrap;
-                    document.getElementById("result").innerHTML += "<p>" + result + "</p>";
-                }
-            }
-        </script>
+        <script src="../static/rust/js/rust_calc.js"></script>
     </div>
 </body>
 </html>
