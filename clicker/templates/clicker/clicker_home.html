@@ -5,15 +5,60 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Infinity Clicker</title>
-    <!-- link rel="stylesheet" href="{% static '../static/rust/css/rust_calc.css' %}" -->
+    <!-- <link rel="stylesheet" href="{% static '../static/rust/css/rust_calc.css' %}" /> -->
+    <style>
+        /* CSS for now */
+    </style>
 </head>
 <body>
     <div class="content-wrapper">
         <div class="container">
             <h1>Infinity Clicker</h1>
+            <p>Click count: <span id="clickCount">{{ counter }}</span></p>
+            <button id="clickButton">Click me!</button>
         </div>
-        <!-- script src="../static/rust/js/rust_calc.js"></ -->
     </div>
     <a href="{% url 'post_list' %}">Back to Home</a>
+
+    <!-- <script src="{% static '../static/rust/js/rust_calc.js' %}"></script> -->
+    <script>
+        // get CSRF token from cookies
+        function getCookie(name) {
+            var cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                var cookies = document.cookie.split(';');
+                for (var i = 0; i < cookies.length; i++) {
+                    var cookie = cookies[i].trim();
+                    // check if correct cookie
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            var clickButton = document.getElementById('clickButton');
+            var clickCountDisplay = document.getElementById('clickCount');
+
+            clickButton.addEventListener('click', function() {
+                // ajax request
+                var xhr = new XMLHttpRequest();
+                xhr.open('POST', '/update_counter/');
+                xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+                xhr.setRequestHeader('X-CSRFToken', getCookie('csrftoken'));
+                xhr.onload = function() {
+                    if (xhr.status === 200) {
+                        var response = JSON.parse(xhr.responseText);
+                        clickCountDisplay.textContent = response.counter;
+                    }
+                };
+                xhr.send();
+            });
+        });
+
+    </script>
 </body>
 </html>
