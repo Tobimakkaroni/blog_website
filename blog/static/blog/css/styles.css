@@ -1,0 +1,10 @@
+body {
+    display: grid;
+    place-items: center;
+    gap: 50px;
+    margin: 0;
+    height: 100vh;
+    padding: 0 32px;
+    background: #eff9ff;
+    font-family: "Poppins";
+}
