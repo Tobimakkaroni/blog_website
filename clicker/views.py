@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 from .models import ClickerUsercounter
+from django.http import HttpResponse
 
 def clicker_view(request):
     return render(request, 'clicker/clicker_home.html')
@@ -28,3 +29,7 @@ def home(request):
         user_counter.counter = 0
         user_counter.save()
     return render(request, 'home.html', {'counter': user_counter.counter})
+
+def clicker_js(request):
+    content = open('path/to/your/clicker.js', 'r').read()  # Replace 'path/to/your/clicker.js' with the actual path to your JavaScript file
+    return HttpResponse(content, content_type='application/javascript')
