@@ -9,16 +9,10 @@
 <body>
     <div class="background"></div>
     <div class="card">
-        <img class="logo" src="logo.svg" />
         <h2>Welcome Back</h2>
         <form class="form" method="post">
             {% csrf_token %}
-            <input
-                type="email"
-                placeholder="Username" />
-            <input 
-                type="password"
-                placeholder="Password" />
+            {{ form.as_p }}
             <button type="submit">Sign In</button>
         </form>
         <footer>
@@ -27,15 +21,4 @@
         </footer>
     </div>
 </body>
-
-
-    <!-- 
-        <h2>Login</h2>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Sign in</button>
-    </form>
-    <p>Need an account? Sign up <a href="{% url 'signup' %}">here</a></p>
-     -->
 {% endblock %}
