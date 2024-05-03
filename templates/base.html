@@ -27,6 +27,9 @@
             {% if user.is_authenticated %}
                 <li><a href="{% url 'clicker' %}">Infinity Clicker</a></li>
             {% endif %}
+            {% if user.is_authenticated %}
+                <li><a href="{% url 'report' %}">My Reports</a></li>
+            {% endif %}
         </ul>
     </nav>
     <div class="content-wrapper">
