@@ -7,5 +7,6 @@ urlpatterns = [
     path('', include('blog.urls')),
     path('', include('rust.urls')),
     path('', include('clicker.urls')),
+    path('', include('report.urls')),
     path('comments/', include(django_comments_xtd_urls)),
 ]

@@ -30,6 +30,7 @@ INSTALLED_APPS = [
     'blog',
     'rust',
     'clicker',
+    'report',
 ]
 
 SITE_ID = 1

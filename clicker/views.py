@@ -30,6 +30,8 @@ def home(request):
         user_counter.save()
     return render(request, 'home.html', {'counter': user_counter.counter})
 
-def clicker_js(request):
-    content = open('path/to/your/clicker.js', 'r').read()  # Replace 'path/to/your/clicker.js' with the actual path to your JavaScript file
-    return HttpResponse(content, content_type='application/javascript')
+@login_required
+def get_counter(request):
+    user = request.user
+    user_counter, _ = ClickerUsercounter.objects.get_or_create(user=user)
+    return JsonResponse({'counter': user_counter.counter})

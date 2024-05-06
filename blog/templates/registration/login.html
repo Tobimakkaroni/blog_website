@@ -1,11 +1,24 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block content %}
-    <h2>Login</h2>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Login</button>
-    </form>
-    <p>Don't have an account? <a href="{% url 'signup' %}">Sign up</a></p>
+
+<head>
+    <link rel="stylesheet" href="{% static '../static/blog/css/styles.css' %}">
+</head>
+<body>
+    <div class="background"></div>
+    <div class="card">
+        <h2>Welcome Back</h2>
+        <form class="form" method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Sign In</button>
+        </form>
+        <footer>
+            Need an account? Sign up
+            <a href="{% url 'signup' %}">here</a>
+        </footer>
+    </div>
+</body>
 {% endblock %}

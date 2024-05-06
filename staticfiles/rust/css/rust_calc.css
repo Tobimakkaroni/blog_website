@@ -1,0 +1,27 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #151d1c;
+    color: #827d77;
+}
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+}
+.content-wrapper {
+    margin: 0 auto;
+    max-width: 800px;
+}
+#rustCalculatorForm {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 20px;
+    background-color: #1c2726;
+}
+.rust-logo img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto; 
+    width: 50%;
+}
