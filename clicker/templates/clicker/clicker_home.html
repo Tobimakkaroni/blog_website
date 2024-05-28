@@ -2,6 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="stylesheet" href="{% static 'clicker/css/clicker.css' %}">
     <script src="{% static 'clicker/js/clicker.js' %}"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,6 +16,8 @@
             <button id="clickButton">Click me!</button>
         </div>
     </div>
-    <a href="{% url 'post_list' %}">Back to Home</a>
 </body>
+<footer>
+    <a class="back-home" href="{% url 'post_list' %}">Back to Home</a>
+</footer>
 </html>
