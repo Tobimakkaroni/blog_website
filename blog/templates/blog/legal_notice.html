@@ -1,4 +1,4 @@
-{% extends 'index.html' %}
+{% extends 'base.html' %}
 
 {% block content %}
     <header>
@@ -32,5 +32,5 @@
     <footer>
         <p>Created by Tobias Stark - © 2024</p>
     </footer>
-    <a href="{% url 'post_list' %}">Back to Home</a>
+    <a href="{% url 'index' %}">Back to Home</a>
 {% endblock %}

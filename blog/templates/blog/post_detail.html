@@ -1,4 +1,4 @@
-{% extends 'index.html' %}
+{% extends 'base.html' %}
 
 {% block content %}
     <h1>{{ post.title }}</h1>
@@ -8,5 +8,5 @@
     <!-- comment section -->
     {% load comments %}
     {% render_comment_form for post %}
-    <a href="{% url 'post_list' %}">Back to Home</a>
+    <a href="{% url 'index' %}">Back to Home</a>
 {% endblock %}

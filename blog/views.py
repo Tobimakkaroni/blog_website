@@ -15,7 +15,7 @@ from django_comments_xtd.models import XtdComment
 from django_comments_xtd.forms import XtdCommentForm
 from django.http import Http404
 
-def post_list(request):
+def index(request):
     posts = Post.objects.all()
     paginator = Paginator(posts, 5)
 
@@ -27,7 +27,7 @@ def post_list(request):
     except EmptyPage:
         posts = paginator.page(paginator.num_pages)
 
-    return render(request, 'blog/post_list.html', {'posts': posts})
+    return render(request, 'blog/index.html', {'posts': posts})
 
 def about(request):
     return render(request, 'blog/about.html')
@@ -61,7 +61,7 @@ def custom_login(request):
             if user is not None:
                 login(request, user)
                 # success
-                return redirect('post_list')
+                return redirect('index')
             else:
                 return render(request, 'registration/login.html', {'form': form, 'error_message': 'Invalid username or password.'})
     else:
@@ -74,7 +74,7 @@ def profile(request):
 
 class CustomLoginView(LoginView):
     def get_success_url(self):
-        return reverse_lazy('post_list')
+        return reverse_lazy('index')
 
     
 @ratelimit(key='ip', rate='5/m', block=True)
